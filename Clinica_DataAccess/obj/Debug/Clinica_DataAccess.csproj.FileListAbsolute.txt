@@ -1,0 +1,6 @@
+E:\C# Level 2\Clinica\Clinica_DataAccess\bin\Debug\Clinica_DataAccess.dll
+E:\C# Level 2\Clinica\Clinica_DataAccess\bin\Debug\Clinica_DataAccess.pdb
+E:\C# Level 2\Clinica\Clinica_DataAccess\obj\Debug\Clinica_DataAccess.csproj.AssemblyReference.cache
+E:\C# Level 2\Clinica\Clinica_DataAccess\obj\Debug\Clinica_DataAccess.csproj.CoreCompileInputs.cache
+E:\C# Level 2\Clinica\Clinica_DataAccess\obj\Debug\Clinica_DataAccess.dll
+E:\C# Level 2\Clinica\Clinica_DataAccess\obj\Debug\Clinica_DataAccess.pdb

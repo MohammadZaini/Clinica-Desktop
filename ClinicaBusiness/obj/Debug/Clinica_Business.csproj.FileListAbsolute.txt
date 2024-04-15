@@ -1,0 +1,9 @@
+E:\C# Level 2\Clinica\ClinicaBusiness\bin\Debug\ClinicaBusiness.dll
+E:\C# Level 2\Clinica\ClinicaBusiness\bin\Debug\ClinicaBusiness.pdb
+E:\C# Level 2\Clinica\ClinicaBusiness\bin\Debug\Clinica_DataAccess.dll
+E:\C# Level 2\Clinica\ClinicaBusiness\bin\Debug\Clinica_DataAccess.pdb
+E:\C# Level 2\Clinica\ClinicaBusiness\obj\Debug\Clinica_Business.csproj.AssemblyReference.cache
+E:\C# Level 2\Clinica\ClinicaBusiness\obj\Debug\Clinica_Business.csproj.CoreCompileInputs.cache
+E:\C# Level 2\Clinica\ClinicaBusiness\obj\Debug\Clinica_Business.csproj.CopyComplete
+E:\C# Level 2\Clinica\ClinicaBusiness\obj\Debug\ClinicaBusiness.dll
+E:\C# Level 2\Clinica\ClinicaBusiness\obj\Debug\ClinicaBusiness.pdb
