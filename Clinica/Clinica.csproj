@@ -52,8 +52,36 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Patients\frmAddUpdatePatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patients\frmAddUpdatePatient.Designer.cs">
+      <DependentUpon>frmAddUpdatePatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Controls\ctrlAddEditPerson.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\Controls\ctrlAddEditPerson.Designer.cs">
+      <DependentUpon>ctrlAddEditPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\ManagePeople.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\ManagePeople.Designer.cs">
+      <DependentUpon>ManagePeople.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patients\frmAddUpdatePatient.resx">
+      <DependentUpon>frmAddUpdatePatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Controls\ctrlAddEditPerson.resx">
+      <DependentUpon>ctrlAddEditPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

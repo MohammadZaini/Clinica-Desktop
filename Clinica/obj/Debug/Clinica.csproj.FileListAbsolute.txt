@@ -1,0 +1,17 @@
+E:\C# Level 2\Clinica\Clinica\bin\Debug\Clinica.exe.config
+E:\C# Level 2\Clinica\Clinica\bin\Debug\Clinica.exe
+E:\C# Level 2\Clinica\Clinica\bin\Debug\Clinica.pdb
+E:\C# Level 2\Clinica\Clinica\bin\Debug\ClinicaBusiness.dll
+E:\C# Level 2\Clinica\Clinica\bin\Debug\Clinica_DataAccess.dll
+E:\C# Level 2\Clinica\Clinica\bin\Debug\ClinicaBusiness.pdb
+E:\C# Level 2\Clinica\Clinica\bin\Debug\Clinica_DataAccess.pdb
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.csproj.AssemblyReference.cache
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Form1.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Properties.Resources.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.csproj.GenerateResource.cache
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.csproj.CoreCompileInputs.cache
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.csproj.CopyComplete
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.exe
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.pdb
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.People.ctrlAddEditPerson.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Patients.frmAddUpdatePatient.resources

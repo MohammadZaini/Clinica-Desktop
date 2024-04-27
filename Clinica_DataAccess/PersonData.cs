@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Clinica_DataAccess
 {
-    public class PersonData
+    public class clsPersonData
     {
-        public static int AddNewPerson(string firstName, string secondName, string thirdName, 
+        public static int AddNewclsPerson(string firstName, string secondName, string thirdName, 
              string lastName, DateTime dateOfBirth, byte gender, string phoneNumber, 
              string email, string address) { 
             
-            int personID = -1;
+            int clsPersonID = -1;
 
             using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
             {
@@ -41,8 +41,8 @@ namespace Clinica_DataAccess
 
                     object id = command.ExecuteScalar(); 
 
-                    if(id != null && int.TryParse(id.ToString(), out int insertedPersonID))
-                        personID = insertedPersonID;
+                    if(id != null && int.TryParse(id.ToString(), out int insertedclsPersonID))
+                        clsPersonID = insertedclsPersonID;
 
                 }
                 catch (Exception)
@@ -53,10 +53,10 @@ namespace Clinica_DataAccess
 
             }
 
-            return personID;
+            return clsPersonID;
         }
 
-        public static bool UpdatePerson(int personID, string firstName, string secondName, string thirdName,
+        public static bool UpdateclsPerson(int clsPersonID, string firstName, string secondName, string thirdName,
             string lastName, DateTime dateOfBirth, byte gender, string phoneNumber,
             string email, string address)
         {
@@ -71,7 +71,7 @@ namespace Clinica_DataAccess
                                  ThirdName = @thirdName, LastName = @lastName, DateOfBirth = @dateOfBirth, 
                                  Gender = @gender, PhoneNumber = @phoneNumber,
                                  Email = @email, Address = @address
-                                 Where PersonID = @personID";
+                                 Where clsPersonID = @clsPersonID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@firstName", firstName);
@@ -83,7 +83,7 @@ namespace Clinica_DataAccess
                 command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
                 command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@address", address);
-                command.Parameters.AddWithValue("@personID", personID);
+                command.Parameters.AddWithValue("@clsPersonID", clsPersonID);
 
                 try
                 {
@@ -95,10 +95,9 @@ namespace Clinica_DataAccess
                         isUpdated = true;
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    DataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -106,7 +105,7 @@ namespace Clinica_DataAccess
             return isUpdated;
         }
 
-        public static bool FindPersonInfoByID(int personID, ref string firstName, ref string secondName, 
+        public static bool FindclsPersonInfoByID(int clsPersonID, ref string firstName, ref string secondName, 
             ref string thirdName, ref string lastName, ref DateTime dateOfBirth, ref byte gender, 
             ref string phoneNumber, ref string email, ref string address) {
 
@@ -115,10 +114,10 @@ namespace Clinica_DataAccess
             using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
             {
                 string query = @"Select * From People                              
-                                 Where PersonID = @personID";
+                                 Where clsPersonID = @clsPersonID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@personID", personID);
+                command.Parameters.AddWithValue("@clsPersonID", clsPersonID);
 
                 try
                 {
@@ -143,10 +142,9 @@ namespace Clinica_DataAccess
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    DataAccessSettings.LogEvent(ex.Message);
                 }
 
             }

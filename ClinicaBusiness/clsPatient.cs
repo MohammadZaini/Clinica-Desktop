@@ -9,41 +9,44 @@ using System.Threading.Tasks;
 
 namespace Clinica_Business
 {
-    public class Patient
+    public class clsPatient : clsPerson
     {
         private enum Mode { AddNew = 0, Update = 1 }
         private Mode _mode = Mode.AddNew;
-        public int ID { get; set; }
-        public int PersonID { get; set; }
-        public Person Person { get; set; }
+        public int PatientID { get; set; }
 
-
-        public Patient(int patientID, int personID) { 
-            ID = patientID;
-            PersonID = personID;
-            Person = Person.Find(personID);
+        public clsPatient(int clsPatientID, int PersonID) { 
+            PatientID = clsPatientID;
+            this.PersonID = PersonID;
 
             _mode = Mode.Update;
         }
 
-        public static Patient Find(int patientID)
+        public clsPatient()
+        {
+            PatientID = -1;
+            _mode = Mode.AddNew;
+        }
+
+        public static clsPatient Find(int patientID)
         {
             int personID = -1;
 
-
-            if (PatientData.FindPatientInfoByID(patientID, ref personID))
-
-                return new Patient(patientID,personID);
+            if (clsPatientData.FindPatientInfoByID(patientID, ref personID))
+                return new clsPatient(patientID, personID);
             else
                 return null;
         }
 
         private bool _AddNewPatient()
         {
+            if (base.Save())
+                this.PatientID = clsPatientData.AddNewPatient(PersonID);
+            else
+                return false;
 
-            this.ID = PatientData.AddNewPatient(PersonID);
 
-            return (this.ID != -1); // -1 means the patient has not been added
+            return (this.PatientID != -1); // -1 means the Patient has not been added
         }
 
         private bool _UpdatePatient()

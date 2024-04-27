@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_DataAccess
 {
-    public class PatientData
+    public class clsPatientData
     {
 
         public static int AddNewPatient(int personID)
@@ -18,12 +18,12 @@ namespace Clinica_DataAccess
             using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
             {
                 string query = @"Insert Into Patients 
-                                 Values (@personID);
+                                 Values (@PersonID);
                                  SELECT SCOPE_IDENTITY();";
 
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@personID", personID);
+                command.Parameters.AddWithValue("@PersonID", personID);
       
                 try
                 {
@@ -35,10 +35,9 @@ namespace Clinica_DataAccess
                         patientID = insertedPersonID;
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    DataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -46,7 +45,7 @@ namespace Clinica_DataAccess
             return patientID;
         }
 
-        public static bool FindPatientInfoByID(int patientID, ref int personID)
+        public static bool FindPatientInfoByID(int clsPatientID, ref int clsPersonID)
         {
 
             bool isFound = false;
@@ -54,10 +53,10 @@ namespace Clinica_DataAccess
             using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
             {
                 string query = @"Select * From Patients                              
-                                 Where patientID = @patientID";
+                                 Where clsPatientID = @clsPatientID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@patientID", patientID);
+                command.Parameters.AddWithValue("@clsPatientID", clsPatientID);
 
                 try
                 {
@@ -69,15 +68,14 @@ namespace Clinica_DataAccess
                         {
                             isFound = true;
 
-                            personID = (int)reader["PersonID"];
+                            clsPersonID = (int)reader["clsPersonID"];
                         }
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    DataAccessSettings.LogEvent(ex.Message);
                 }
 
             }

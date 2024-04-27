@@ -41,9 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patient.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="clsPatient.cs" />
+    <Compile Include="clsPerson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="clsUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Clinica_DataAccess\Clinica_DataAccess.csproj">

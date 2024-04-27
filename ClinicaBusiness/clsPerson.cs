@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Clinica_Business
 {
-    public class Person
+    public class clsPerson
     {
         private enum Mode { AddNew = 0, Update = 1 }
         private Mode _mode = Mode.AddNew;
-        public int ID { get; set; }
+        public int PersonID { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string ThirdName { get; set; }
@@ -23,10 +23,11 @@ namespace Clinica_Business
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public string ImagePath { get; set; }
 
 
-        public Person() {
-            ID = -1;
+        public clsPerson() {
+            PersonID = -1;
             FirstName = string.Empty;
             SecondName = string.Empty;
             ThirdName = string.Empty;
@@ -40,10 +41,10 @@ namespace Clinica_Business
             _mode = Mode.AddNew;
         }
 
-        private Person(int personID, string firstName, string secondName, string thirdName, string lastName, DateTime dateOfBirth,
+        private clsPerson(int clsPersonID, string firstName, string secondName, string thirdName, string lastName, DateTime dateOfBirth,
         byte gender, string phone, string email, string address) { 
             
-            this.ID = personID;
+            this.PersonID = clsPersonID;
             this.FirstName = firstName;
             this.SecondName = secondName;
             this.ThirdName = thirdName;
@@ -57,41 +58,42 @@ namespace Clinica_Business
             _mode = Mode.Update;
         }
 
-        public static Person Find(int personID) {
+        public static clsPerson Find(int clsPersonID) {
             string firstName = "", secondName = "", thirdName = "", lastName = "", phone = "",
                 email = "", address = "";
             DateTime dateOfBirth = DateTime.MinValue;
             byte gender = 0;
 
 
-            if (PersonData.FindPersonInfoByID(personID, ref firstName, ref secondName, ref thirdName, ref lastName,
+            if (clsPersonData.FindclsPersonInfoByID(clsPersonID, ref firstName, ref secondName, ref thirdName, ref lastName,
                ref dateOfBirth, ref gender, ref phone, ref email, ref address))
 
-                return new Person(personID, firstName, secondName, thirdName, lastName,
+                return new clsPerson(clsPersonID, firstName, secondName, thirdName, lastName,
                  dateOfBirth, gender, phone, email, address);
             else
                 return null;
         }
 
-        private bool _AddNewPerson() {
+        private bool _AddNewclsPerson() {
 
-            this.ID = PersonData.AddNewPerson(FirstName, SecondName, ThirdName, LastName, DateOfBirth,
+            this.PersonID = clsPersonData.AddNewclsPerson(FirstName, SecondName, ThirdName, LastName, DateOfBirth,
                 Gender, Phone, Email, Address);
 
-            return (this.ID != -1); // -1 means the person has not been added
+            return (this.PersonID != -1); // -1 means the clsPerson has not been added
         }
 
-        private bool _UpdatePerson()
+        private bool _UpdateclsPerson()
         {
-            return PersonData.UpdatePerson(ID, FirstName, SecondName, ThirdName, LastName, DateOfBirth, 
+            return clsPersonData.UpdateclsPerson(PersonID, FirstName, SecondName, ThirdName, LastName, DateOfBirth, 
                 Gender, Phone, Email, Address);
         }
+
         public bool Save() {
 
             switch (_mode)
             {
                 case Mode.AddNew:
-                    if (_AddNewPerson())
+                    if (_AddNewclsPerson())
                     {
                         _mode = Mode.Update;
                         return true;
@@ -99,7 +101,7 @@ namespace Clinica_Business
                     return false;
 
                 case Mode.Update:
-                    return _UpdatePerson();
+                    return _UpdateclsPerson();
 
                 default:
                     break;
