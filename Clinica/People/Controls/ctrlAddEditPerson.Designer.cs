@@ -368,7 +368,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "ctrlAddEditPerson";
             this.Size = new System.Drawing.Size(664, 573);
-            this.Load += new System.EventHandler(this.ctrlAddEditPerson_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);

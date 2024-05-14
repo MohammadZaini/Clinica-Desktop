@@ -11,8 +11,10 @@ namespace Clinica_Business
 {
     public class clsPerson
     {
-        private enum Mode { AddNew = 0, Update = 1 }
-        private Mode _mode = Mode.AddNew;
+        public enum PersonType { Patient = 0, Doctor = 1, User = 2 };
+
+        protected enum Mode { AddNew = 0, Update = 1 }
+        protected Mode mode = Mode.AddNew;
         public int PersonID { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
@@ -32,19 +34,19 @@ namespace Clinica_Business
             SecondName = string.Empty;
             ThirdName = string.Empty;
             LastName = string.Empty;
-            DateOfBirth = DateTime.MinValue;
+            DateOfBirth = DateTime.Now;
             Gender = 0;
             Phone = string.Empty;
             Email = string.Empty;
             Address = string.Empty;
 
-            _mode = Mode.AddNew;
+            mode = Mode.AddNew;
         }
 
-        private clsPerson(int clsPersonID, string firstName, string secondName, string thirdName, string lastName, DateTime dateOfBirth,
+        protected clsPerson(int personID, string firstName, string secondName, string thirdName, string lastName, DateTime dateOfBirth,
         byte gender, string phone, string email, string address) { 
             
-            this.PersonID = clsPersonID;
+            this.PersonID = personID;
             this.FirstName = firstName;
             this.SecondName = secondName;
             this.ThirdName = thirdName;
@@ -55,17 +57,17 @@ namespace Clinica_Business
             this.Email = email;
             this.Address = address;
 
-            _mode = Mode.Update;
+            mode = Mode.Update;
         }
 
         public static clsPerson Find(int clsPersonID) {
             string firstName = "", secondName = "", thirdName = "", lastName = "", phone = "",
                 email = "", address = "";
-            DateTime dateOfBirth = DateTime.MinValue;
+            DateTime dateOfBirth = DateTime.Now;
             byte gender = 0;
 
 
-            if (clsPersonData.FindclsPersonInfoByID(clsPersonID, ref firstName, ref secondName, ref thirdName, ref lastName,
+            if (clsPersonData.FindPersonInfoByID(clsPersonID, ref firstName, ref secondName, ref thirdName, ref lastName,
                ref dateOfBirth, ref gender, ref phone, ref email, ref address))
 
                 return new clsPerson(clsPersonID, firstName, secondName, thirdName, lastName,
@@ -74,34 +76,34 @@ namespace Clinica_Business
                 return null;
         }
 
-        private bool _AddNewclsPerson() {
+        private bool _AddNewPerson() {
 
-            this.PersonID = clsPersonData.AddNewclsPerson(FirstName, SecondName, ThirdName, LastName, DateOfBirth,
+            this.PersonID = clsPersonData.AddNewPerson(FirstName, SecondName, ThirdName, LastName, DateOfBirth,
                 Gender, Phone, Email, Address);
 
             return (this.PersonID != -1); // -1 means the clsPerson has not been added
         }
 
-        private bool _UpdateclsPerson()
+        private bool _UpdatePerson()
         {
-            return clsPersonData.UpdateclsPerson(PersonID, FirstName, SecondName, ThirdName, LastName, DateOfBirth, 
+            return clsPersonData.UpdatePerson(PersonID, FirstName, SecondName, ThirdName, LastName, DateOfBirth, 
                 Gender, Phone, Email, Address);
         }
 
         public bool Save() {
 
-            switch (_mode)
+            switch (mode)
             {
                 case Mode.AddNew:
-                    if (_AddNewclsPerson())
+                    if (_AddNewPerson())
                     {
-                        _mode = Mode.Update;
+                        mode = Mode.Update;
                         return true;
                     }
                     return false;
 
                 case Mode.Update:
-                    return _UpdateclsPerson();
+                    return _UpdatePerson();
 
                 default:
                     break;

@@ -82,6 +82,9 @@
     <EmbeddedResource Include="People\Controls\ctrlAddEditPerson.resx">
       <DependentUpon>ctrlAddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="People\ManagePeople.resx">
+      <DependentUpon>ManagePeople.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

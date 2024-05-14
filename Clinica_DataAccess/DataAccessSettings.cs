@@ -15,7 +15,7 @@ namespace Clinica_DataAccess
         {
             string sourceName = "Clinica";
 
-            if (!EventLog.Exists(sourceName))
+            if (!EventLog.SourceExists(sourceName))
             {
                 EventLog.CreateEventSource(sourceName, "Application");
             }

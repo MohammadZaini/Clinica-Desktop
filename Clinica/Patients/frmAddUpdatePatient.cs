@@ -16,15 +16,29 @@ namespace Clinica.Patients
         public frmAddUpdatePatient()
         {
             InitializeComponent();
+
+            ctrlAddEditPerson1.personType = clsPerson.PersonType.Doctor;
         }
 
         public frmAddUpdatePatient(bool isPatient)
         {
             InitializeComponent();
 
-            if(isPatient)
+            if (isPatient)
+            { 
                 ctrlAddEditPerson1.HideSpecialization = false;
+                ctrlAddEditPerson1.personType = clsPerson.PersonType.Patient;
+            }
+
+            clsPatient patient = clsPatient.Find(3);
+            patient.FirstName = "koko";
+
+            if (patient.Save())
+                MessageBox.Show("The patient data has been updated successfully");
+            else
+                MessageBox.Show("something went wrong :-(");
+
         }
-       
+
     }
 }

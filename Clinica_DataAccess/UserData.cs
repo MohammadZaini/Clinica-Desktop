@@ -122,8 +122,6 @@ namespace Clinica_DataAccess
                         DataAccessSettings.LogEvent(ex.Message);
                     }          
                 }
-
-
             }
 
             return userID;

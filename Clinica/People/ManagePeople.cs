@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicaBusiness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,16 @@ namespace Clinica.People
         public ManagePeople()
         {
             InitializeComponent();
+        }
+
+        private void ManagePeople_Load(object sender, EventArgs e)
+        {
+            clsDoctor doctor = clsDoctor.Find(1);
+
+            if (doctor != null)
+            {
+                MessageBox.Show(doctor.Person.DateOfBirth.ToString());
+            }
         }
     }
 }

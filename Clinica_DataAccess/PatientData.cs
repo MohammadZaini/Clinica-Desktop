@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,7 @@ namespace Clinica_DataAccess
             return patientID;
         }
 
-        public static bool FindPatientInfoByID(int clsPatientID, ref int clsPersonID)
+        public static bool FindPatientInfoByID(int PatientID, ref int PersonID)
         {
 
             bool isFound = false;
@@ -53,10 +54,10 @@ namespace Clinica_DataAccess
             using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
             {
                 string query = @"Select * From Patients                              
-                                 Where clsPatientID = @clsPatientID";
+                                 Where PatientID = @PatientID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@clsPatientID", clsPatientID);
+                command.Parameters.AddWithValue("@PatientID", PatientID);
 
                 try
                 {
@@ -68,7 +69,7 @@ namespace Clinica_DataAccess
                         {
                             isFound = true;
 
-                            clsPersonID = (int)reader["clsPersonID"];
+                            PersonID = (int)reader["PersonID"];
                         }
                     }
 
@@ -81,6 +82,62 @@ namespace Clinica_DataAccess
             }
 
             return isFound;
+        }
+
+        public static int AddNewPatient(ref int personID, string firstName, string secondName, string thirdName,
+             string lastName, DateTime dateOfBirth, byte gender, string phoneNumber,
+             string email, string address)
+        {
+
+            int patientID = -1;
+
+            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            {
+
+                using (SqlCommand command = new SqlCommand("sp_AddNewPatient", connection))
+                {
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@SecondName", secondName);
+                    command.Parameters.AddWithValue("@ThirdName", thirdName);
+                    command.Parameters.AddWithValue("@LastName", lastName);
+                    command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+                    command.Parameters.AddWithValue("@Gender", gender);
+                    command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Address", address);
+
+                    SqlParameter personIDOutputParam = new SqlParameter("@PersonID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(personIDOutputParam);
+
+                    SqlParameter patientIDOutputParam = new SqlParameter("@PatientID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(patientIDOutputParam);
+
+                    try
+                    {
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        personID = (int)patientIDOutputParam.Value;
+                        patientID = (int)personIDOutputParam.Value;
+                    }
+                    catch (Exception ex)
+                    {
+                        DataAccessSettings.LogEvent(ex.Message);
+                    }
+                }
+            }
+
+            return patientID;
         }
     }
 }

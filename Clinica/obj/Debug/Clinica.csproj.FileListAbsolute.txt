@@ -15,3 +15,4 @@ E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.exe
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.pdb
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.People.ctrlAddEditPerson.resources
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Patients.frmAddUpdatePatient.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.People.ManagePeople.resources

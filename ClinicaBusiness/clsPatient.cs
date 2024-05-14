@@ -15,11 +15,25 @@ namespace Clinica_Business
         private Mode _mode = Mode.AddNew;
         public int PatientID { get; set; }
 
-        public clsPatient(int clsPatientID, int PersonID) { 
-            PatientID = clsPatientID;
-            this.PersonID = PersonID;
+        private clsPatient(int patientID, int personID, string firstName, string secondName, string thirdName, 
+            string lastName, DateTime dateOfBirth, byte gender, string phone, string email, string address) 
+            : base (personID, firstName, secondName, thirdName, lastName, dateOfBirth, gender, phone,
+                  email, address) 
+        { 
+
+            PatientID = patientID;
+            this.PersonID = personID;
+            base.FirstName = firstName;
+            base.SecondName = secondName;
+            base.ThirdName = thirdName;
+            base.LastName = lastName;
+            base.DateOfBirth = dateOfBirth;
+            base.Gender = gender;
+            base.Phone = phone;
+            base.Address = address;
 
             _mode = Mode.Update;
+            base.mode = clsPerson.Mode.Update;
         }
 
         public clsPatient()
@@ -28,40 +42,49 @@ namespace Clinica_Business
             _mode = Mode.AddNew;
         }
 
-        public static clsPatient Find(int patientID)
+        public static new clsPatient Find(int patientID)
         {
             int personID = -1;
 
             if (clsPatientData.FindPatientInfoByID(patientID, ref personID))
-                return new clsPatient(patientID, personID);
+            {
+                clsPerson person = clsPerson.Find(personID);
+
+                if(person == null) return null;
+
+                return new clsPatient(patientID, personID, person.FirstName, person.SecondName, person.ThirdName,
+                    person.LastName, person.DateOfBirth, person.Gender, person.Phone, person.Email, person.Address);
+            }         
             else
                 return null;
         }
 
         private bool _AddNewPatient()
         {
-            if (base.Save())
-                this.PatientID = clsPatientData.AddNewPatient(PersonID);
-            else
-                return false;
+            int personID = 0;
+            this.PatientID = clsPatientData.AddNewPatient(ref personID, FirstName, SecondName, ThirdName, LastName,
+                DateOfBirth, Gender, Phone,Email,Address);
 
+            this.PersonID = personID;
 
             return (this.PatientID != -1); // -1 means the Patient has not been added
         }
 
         private bool _UpdatePatient()
         {
-            return true;
+            return base.Save();
         }
-        public bool Save()
-        {
 
+        public new bool Save()
+        {
             switch (_mode)
             {
                 case Mode.AddNew:
                     if (_AddNewPatient())
                     {
                         _mode = Mode.Update;
+                        base.mode = clsPerson.Mode.Update;
+
                         return true;
                     }
                     return false;

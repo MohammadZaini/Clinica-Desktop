@@ -19,7 +19,7 @@ namespace ClinicaBusiness
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
-        public int clsPersonID { get; set; }
+        public int PersonID { get; set; }
         public clsPerson clsPerson { get; set; }
 
         public clsUser() { 
@@ -27,21 +27,21 @@ namespace ClinicaBusiness
             Username = string.Empty;
             Password = string.Empty;
             IsActive = false;
-            clsPersonID = -1;
+            PersonID = -1;
             clsPerson = null;
 
             _mode = Mode.AddNew;
         }
 
-        private clsUser(int userID, int clsPersonID, string username, string password, bool isActive) { 
+        private clsUser(int userID, int PersonID, string username, string password, bool isActive) { 
         
             ID = userID;
             Username= username;
             Password= password;
             IsActive = isActive;
-            clsPersonID = clsPersonID;
+            this.PersonID = PersonID;
 
-            clsPerson = clsPerson.Find(clsPersonID);
+            clsPerson = clsPerson.Find(PersonID);
 
             _mode = Mode.Update;
 
@@ -66,7 +66,7 @@ namespace ClinicaBusiness
 
         private bool _AddNewUser() {
 
-            ID = UserData.AddNewUser(clsPersonID, Username, Password, IsActive);
+            ID = UserData.AddNewUser(PersonID, Username, Password, IsActive);
 
             return ID != -1; // other than -1 means that the user has been inserted successfully
 
