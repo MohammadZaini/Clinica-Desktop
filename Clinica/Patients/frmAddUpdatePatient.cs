@@ -13,31 +13,38 @@ namespace Clinica.Patients
 {
     public partial class frmAddUpdatePatient : Form
     {
+
+        private enum enMode { Addnew = 0, Update = 1}
+        private enMode _mode = enMode.Addnew;
+        private clsPatient _patient;
+
         public frmAddUpdatePatient()
         {
             InitializeComponent();
 
-            ctrlAddEditPerson1.personType = clsPerson.PersonType.Doctor;
+            _AddNewPatientMode();
         }
 
-        public frmAddUpdatePatient(bool isPatient)
+        public frmAddUpdatePatient(int patientID)
         {
             InitializeComponent();
 
-            if (isPatient)
-            { 
-                ctrlAddEditPerson1.HideSpecialization = false;
-                ctrlAddEditPerson1.personType = clsPerson.PersonType.Patient;
-            }
+            _UpdatePatientMode(patientID);
+        }
 
-            clsPatient patient = clsPatient.Find(3);
-            patient.FirstName = "koko";
+        private void _UpdatePatientMode(int patientID) {
 
-            if (patient.Save())
-                MessageBox.Show("The patient data has been updated successfully");
-            else
-                MessageBox.Show("something went wrong :-(");
+            _mode = enMode.Update;
+            _patient = clsPatient.Find(patientID);
+            ctrlAddEditPerson1.ModeTitle = "Update Patient";
+            ctrlAddEditPerson1._LoadPatientData(patientID);
+        }
 
+        private void _AddNewPatientMode()
+        {
+            _mode = enMode.Addnew;
+            _patient = new clsPatient();
+            ctrlAddEditPerson1.IsSpecializationVisible = false;
         }
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,30 +12,31 @@ namespace Clinica_DataAccess
     public class clsPatientData
     {
 
-        public static int AddNewPatient(int personID)
-        {
-
-            int patientID = -1;
-
+        public static DataTable GetAllPatients() { 
+        
+            DataTable patientsDT = new DataTable();
             using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
-            {
-                string query = @"Insert Into Patients 
-                                 Values (@PersonID);
-                                 SELECT SCOPE_IDENTITY();";
-
-
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@PersonID", personID);
-      
+            {          
                 try
                 {
-                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("sp_ListPatients", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
 
-                    object id = command.ExecuteScalar();
+                        try
+                        {
+                            connection.Open();
 
-                    if (id != null && int.TryParse(id.ToString(), out int insertedPersonID))
-                        patientID = insertedPersonID;
+                            SqlDataReader reader = command.ExecuteReader();
+                            if(reader.HasRows)
+                                patientsDT.Load(reader);
 
+                        }
+                        catch (Exception ex)
+                        {
+                            DataAccessSettings.LogEvent(ex.Message);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -43,7 +45,7 @@ namespace Clinica_DataAccess
 
             }
 
-            return patientID;
+            return patientsDT;
         }
 
         public static bool FindPatientInfoByID(int PatientID, ref int PersonID)
@@ -138,6 +140,48 @@ namespace Clinica_DataAccess
             }
 
             return patientID;
+        }
+
+
+
+        public static bool DeletePatient(int personID)
+        {
+
+            bool isDeleted = false;
+
+            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("sp_DeletePatient", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@PersonID", personID);
+
+                        try
+                        {
+                            connection.Open();
+
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                                isDeleted = true;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            DataAccessSettings.LogEvent(ex.Message);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    DataAccessSettings.LogEvent(ex.Message);
+                }
+
+            }
+
+            return isDeleted;
         }
     }
 }

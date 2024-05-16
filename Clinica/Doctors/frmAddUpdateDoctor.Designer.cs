@@ -1,6 +1,6 @@
-﻿namespace Clinica.Patients
+﻿namespace Clinica.Doctors
 {
-    partial class frmAddUpdatePatient
+    partial class frmAddUpdateDoctor
     {
         /// <summary>
         /// Required designer variable.
@@ -33,22 +33,21 @@
             // 
             // ctrlAddEditPerson1
             // 
-            this.ctrlAddEditPerson1.Location = new System.Drawing.Point(3, 1);
+            this.ctrlAddEditPerson1.Location = new System.Drawing.Point(12, 3);
             this.ctrlAddEditPerson1.ModeTitle = "Patient";
             this.ctrlAddEditPerson1.Name = "ctrlAddEditPerson1";
             this.ctrlAddEditPerson1.Size = new System.Drawing.Size(664, 573);
             this.ctrlAddEditPerson1.TabIndex = 0;
             // 
-            // frmAddUpdatePatient
+            // frmAddUpdateDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 575);
+            this.ClientSize = new System.Drawing.Size(689, 588);
             this.Controls.Add(this.ctrlAddEditPerson1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmAddUpdatePatient";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAddUpdatePatient";
+            this.Name = "frmAddUpdateDoctor";
+            this.Text = "frmAddUpdateDoctor";
             this.ResumeLayout(false);
 
         }

@@ -1,6 +1,7 @@
 ﻿using Clinica_DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Security.Policy;
@@ -20,18 +21,7 @@ namespace Clinica_Business
             : base (personID, firstName, secondName, thirdName, lastName, dateOfBirth, gender, phone,
                   email, address) 
         { 
-
             PatientID = patientID;
-            this.PersonID = personID;
-            base.FirstName = firstName;
-            base.SecondName = secondName;
-            base.ThirdName = thirdName;
-            base.LastName = lastName;
-            base.DateOfBirth = dateOfBirth;
-            base.Gender = gender;
-            base.Phone = phone;
-            base.Address = address;
-
             _mode = Mode.Update;
             base.mode = clsPerson.Mode.Update;
         }
@@ -40,6 +30,11 @@ namespace Clinica_Business
         {
             PatientID = -1;
             _mode = Mode.AddNew;
+        }
+
+        public static DataTable GetAllPatients() { 
+        
+            return clsPatientData.GetAllPatients();
         }
 
         public static new clsPatient Find(int patientID)
@@ -97,6 +92,15 @@ namespace Clinica_Business
             }
 
             return false;
+        }
+
+        public new bool Delete() { 
+            return DeletePatient(this.PersonID);
+        }
+
+        public static bool DeletePatient(int personID) {
+
+            return clsPatientData.DeletePatient(personID);
         }
 
     }

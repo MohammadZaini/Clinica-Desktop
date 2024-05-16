@@ -16,22 +16,31 @@ namespace Clinica.People
     {
 
         public clsPerson.PersonType personType = clsPerson.PersonType.Patient;
+        public enum enMode { AddNew = 0, Update = 1 };
+        private enMode _mode = enMode.AddNew;
 
         private clsPatient _patient;
         private clsDoctor _doctor;
+        private clsUser _user;
 
         public ctrlAddEditPerson()
         {
             InitializeComponent();
         }
 
-        public bool HideSpecialization {
+        public string ModeTitle { 
+            get { return lblPerson.Text; } 
+            set { lblPerson.Text = value; } 
+        }
+
+        public bool IsSpecializationVisible {
             set { gbSpecialization.Visible = value; }
         }
 
         private void _PreparePatientObject()
         {
-            _patient = new clsPatient();
+            if(_mode == enMode.AddNew)
+                _patient = new clsPatient();
 
             _patient.FirstName = txtFirstName.Text.Trim();
             _patient.SecondName = txtSecondName.Text.Trim();
@@ -46,8 +55,12 @@ namespace Clinica.People
 
         private void _PrepareDoctorObject()
         {
-            _doctor = new clsDoctor();
+            if(_mode == enMode.AddNew)
+                _doctor = new clsDoctor();
+
             _doctor.FirstName = txtFirstName.Text.Trim();
+            _doctor.SecondName = txtSecondName.Text.Trim();
+            _doctor.ThirdName = txtThirdName.Text.Trim();
             _doctor.LastName = txtLastName.Text.Trim();
             _doctor.Email = txtEmail.Text.Trim();
             _doctor.Phone = txtPhoneNumber.Text.Trim();
@@ -55,6 +68,63 @@ namespace Clinica.People
             _doctor.Specialization = txtSpecialization.Text.Trim();
             _doctor.DateOfBirth = dtpBirthDate.Value;
             _doctor.Gender = rbMale.Checked ? (byte)0 : (byte)1;
+        }
+
+        public void _LoadPatientData(int patientID) {
+
+            gbSpecialization.Visible = false;
+            _mode = enMode.Update;
+
+            _patient = clsPatient.Find(patientID);
+
+            if (_patient == null) return;
+
+            byte gender = _patient.Gender;
+
+            txtFirstName.Text = _patient.FirstName;
+            txtSecondName.Text = _patient.SecondName;
+            txtThirdName.Text = _patient.ThirdName;
+            txtLastName.Text = _patient.LastName;
+            txtEmail.Text = _patient.Email;
+            txtPhoneNumber.Text = _patient.Phone;
+            dtpBirthDate.Value = _patient.DateOfBirth;
+            txtAddress.Text = _patient.Address;
+            lblID.Visible = true;
+            lblID.Text = "ID: " + _patient.PatientID.ToString();
+
+            if (gender == 0)
+                rbMale.Checked = true;
+            else
+                rbFemale.Checked = true;
+        }
+
+        public void _LoadDoctorData(int doctorID)
+        {
+            gbSpecialization.Visible = true;
+            _mode = enMode.Update;
+
+            _doctor = clsDoctor.Find(doctorID);
+
+            if (_doctor == null) return;
+
+            byte gender = _doctor.Gender;
+
+            txtFirstName.Text = _doctor.FirstName;
+            txtSecondName.Text = _doctor.SecondName;
+            txtThirdName.Text = _doctor.ThirdName;
+            txtLastName.Text = _doctor.LastName;
+            txtEmail.Text = _doctor.Email;
+            txtPhoneNumber.Text = _doctor.Phone;
+            dtpBirthDate.Value = _doctor.DateOfBirth;
+            txtAddress.Text = _doctor.Address;
+            txtSpecialization.Text = _doctor.Specialization;
+            lblID.Visible = true;
+            lblID.Text = "ID: " + _doctor.DoctorID.ToString();
+
+            if (gender == 0)
+                rbMale.Checked = true;
+            else
+                rbFemale.Checked = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -65,24 +135,59 @@ namespace Clinica.People
                 return;
             }
 
-            if (personType == clsPerson.PersonType.Patient)
-            {
-                _PreparePatientObject();
+            _SavePerson();
+        }
 
-                if (_patient.Save())
-                    MessageBox.Show("Patient has been added!", "Success", MessageBoxButtons.OK);
-                else
-                    MessageBox.Show("Something went wrong!", "Error", MessageBoxButtons.OK);
-            }
-            else if (personType == clsPerson.PersonType.Doctor)
-            {
-                _PrepareDoctorObject();
+        private void _SavePerson() {
 
-                if (_doctor.Save())
-                    MessageBox.Show("Doctor has been added!", "Success", MessageBoxButtons.OK);
-                else
-                    MessageBox.Show("Something went wrong!", "Error", MessageBoxButtons.OK);
+            switch (personType)
+            { 
+                case clsPerson.PersonType.Patient:
+
+                    _PreparePatientObject();
+                    if (_patient.Save())
+                    {
+                        _UpdateUI(_patient.PatientID);
+                        MessageBox.Show("Patient's Data has been Saved!", "Success", MessageBoxButtons.OK);
+                    }
+                    else
+                        MessageBox.Show("Something went wrong!", "Error", MessageBoxButtons.OK);
+
+                    break;
+                case clsPerson.PersonType.Doctor:
+
+                     _PrepareDoctorObject();
+
+                    if (_doctor.Save())
+                    {
+                        _UpdateUI(_doctor.DoctorID);
+                        MessageBox.Show("Doctor's Data has been Saved!", "Success", MessageBoxButtons.OK);
+                    }
+                    else
+                        MessageBox.Show("Something went wrong!", "Error", MessageBoxButtons.OK);
+
+                    break;
+                case clsPerson.PersonType.User:
+                    if (_user.Save())
+                    {
+                        _UpdateUI(_user.ID);
+                        MessageBox.Show("User's Data has been Saved!", "Success", MessageBoxButtons.OK);
+                    }
+                    else
+                        MessageBox.Show("Something went wrong!", "Error", MessageBoxButtons.OK);
+
+                    break;
+                default:
+                    break;
             }
+        }
+
+        private void _UpdateUI(int personID) {
+
+            _mode = enMode.Update;
+            lblPerson.Text = "Update Info";
+            lblID.Text = "ID: " + personID.ToString();
+            lblID.Visible = true;
         }
     }
 }

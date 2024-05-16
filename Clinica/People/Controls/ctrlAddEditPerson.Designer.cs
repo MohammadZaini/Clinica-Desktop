@@ -50,18 +50,19 @@
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAddPicture = new System.Windows.Forms.Button();
             this.txtSpecialization = new System.Windows.Forms.TextBox();
             this.gbSpecialization = new System.Windows.Forms.GroupBox();
+            this.lblID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.gbSpecialization.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -264,14 +265,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gender";
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(160, 19);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(23, 20);
-            this.pictureBox3.TabIndex = 25;
-            this.pictureBox3.TabStop = false;
-            // 
             // pictureBox4
             // 
             this.pictureBox4.Location = new System.Drawing.Point(67, 19);
@@ -279,6 +272,14 @@
             this.pictureBox4.Size = new System.Drawing.Size(23, 20);
             this.pictureBox4.TabIndex = 26;
             this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(160, 19);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(23, 20);
+            this.pictureBox3.TabIndex = 25;
+            this.pictureBox3.TabStop = false;
             // 
             // btnSave
             // 
@@ -338,10 +339,24 @@
             this.gbSpecialization.TabStop = false;
             this.gbSpecialization.Text = "Specialization";
             // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblID.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblID.Location = new System.Drawing.Point(13, 16);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(68, 29);
+            this.lblID.TabIndex = 30;
+            this.lblID.Text = "[???]";
+            this.lblID.Visible = false;
+            // 
             // ctrlAddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblID);
             this.Controls.Add(this.gbSpecialization);
             this.Controls.Add(this.btnAddPicture);
             this.Controls.Add(this.btnCancel);
@@ -372,8 +387,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.gbSpecialization.ResumeLayout(false);
             this.gbSpecialization.PerformLayout();
             this.ResumeLayout(false);
@@ -412,5 +427,6 @@
         private System.Windows.Forms.Button btnAddPicture;
         private System.Windows.Forms.TextBox txtSpecialization;
         private System.Windows.Forms.GroupBox gbSpecialization;
+        private System.Windows.Forms.Label lblID;
     }
 }

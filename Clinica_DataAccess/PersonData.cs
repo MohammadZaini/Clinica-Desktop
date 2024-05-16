@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -150,6 +151,46 @@ namespace Clinica_DataAccess
             }
 
             return isFound;
+        }
+
+
+        public static bool DeletePerson(int personID) {
+
+            bool isDeleted = false;
+
+            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("sp_DeletePerson", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@PersonID", personID);
+
+                        try
+                        {
+                            connection.Open();
+                            
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                                isDeleted = true;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            DataAccessSettings.LogEvent(ex.Message);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    DataAccessSettings.LogEvent(ex.Message);
+                }
+
+            }
+
+            return isDeleted;
         }
     }
 }

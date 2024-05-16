@@ -112,5 +112,10 @@ namespace Clinica_Business
             return false;
         }
 
+        public bool Delete() { 
+        
+            return clsPersonData.DeletePerson(PersonID);
+        }
+
     }
 }

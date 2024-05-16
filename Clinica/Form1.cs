@@ -1,4 +1,5 @@
-﻿using Clinica.Patients;
+﻿using Clinica.Doctors;
+using Clinica.Patients;
 using Clinica.People;
 using ClinicaBusiness;
 using System;
@@ -39,14 +40,14 @@ namespace Clinica
 
         private void btnPatients_Click(object sender, EventArgs e)
         {
-            frmAddUpdatePatient addUpdatePatientForm = new frmAddUpdatePatient(true);
-            addUpdatePatientForm.Show();
+            frmManagePatients managePatients = new frmManagePatients();
+            managePatients.Show();
         }
 
         private void btnDoctors_Click(object sender, EventArgs e)
         {
-            frmAddUpdatePatient addUpdatePatientForm = new frmAddUpdatePatient();
-            addUpdatePatientForm.Show();
+            frmManageDoctors manageDoctors = new frmManageDoctors();    
+            manageDoctors.Show();
         }
     }
 }

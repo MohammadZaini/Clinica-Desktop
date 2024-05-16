@@ -2,6 +2,7 @@
 using Clinica_DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace ClinicaBusiness
 {
     public class clsDoctor : clsPerson
     {
-
         enum Mode { AddNew = 0, Update = 1 }
 
         private Mode _mode = Mode.AddNew;
@@ -27,14 +27,14 @@ namespace ClinicaBusiness
             _mode = Mode.AddNew;       
         }
 
-        private clsDoctor(int doctorID, int personID, string specialization)
+        private clsDoctor(int doctorID, int personID, string firstName, string secondName, string thirdName, 
+            string lastName, DateTime dateOfBirth, byte gender, string phone, string email, string address,
+            string specialization) : base(personID, firstName, secondName, thirdName, lastName, dateOfBirth, 
+                gender, phone, email, address)
         {
             DoctorID = doctorID;       
             Specialization = specialization;
-            Person = clsPerson.Find(personID);
-
             _mode = Mode.Update;
-
         }
 
         public static new clsDoctor Find(int doctorID) {
@@ -44,7 +44,9 @@ namespace ClinicaBusiness
 
             if (clsDoctorData.GetDoctorInfoByID(doctorID, ref personID, ref specialization))
             {
-                return new clsDoctor(doctorID, personID, specialization);
+                clsPerson person = clsPerson.Find(personID);
+                return new clsDoctor(doctorID, personID, person.FirstName, person.SecondName, person.ThirdName,
+                    person.LastName, person.DateOfBirth, person.Gender, person.Phone, person.Email, person.Address, specialization);
             }
             else
                 return null;
@@ -52,18 +54,22 @@ namespace ClinicaBusiness
 
         private bool _AddNewDoctor() {
 
-            this.DoctorID = clsDoctorData.AddNewDoctor(this.PersonID, this.Specialization);
+            int personID = 0;
+            this.DoctorID = clsDoctorData.AddNewDoctor(ref personID, FirstName, SecondName, ThirdName, LastName,
+                DateOfBirth, Gender, Phone, Email, Address, Specialization);
 
-            return DoctorID != -1;
+            this.PersonID = personID;
+
+            return (this.DoctorID != -1);
         }
 
         private bool _UpdateDoctor()
         {
             return base.Save();
         }
-
+        
         public new bool Save() {
-
+            
             switch (_mode)
             {
                 case Mode.AddNew:
@@ -79,6 +85,22 @@ namespace ClinicaBusiness
                 default:
                     return false;
             }
+        }
+
+        public static DataTable GetAllDoctors() {
+
+            return clsDoctorData.GetAllDoctors();
+        }
+
+
+        public new bool Delete() {
+
+            return DeleteDoctor(PersonID);
+        }
+
+        public static bool DeleteDoctor(int personID) {
+        
+            return clsDoctorData.DeleteDoctor(personID);
         }
     }
 }

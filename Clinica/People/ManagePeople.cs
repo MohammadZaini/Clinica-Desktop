@@ -24,7 +24,7 @@ namespace Clinica.People
 
             if (doctor != null)
             {
-                MessageBox.Show(doctor.Person.DateOfBirth.ToString());
+                MessageBox.Show(doctor.FirstName);
             }
         }
     }
