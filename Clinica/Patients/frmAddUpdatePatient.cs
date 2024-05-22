@@ -37,7 +37,7 @@ namespace Clinica.Patients
             _mode = enMode.Update;
             _patient = clsPatient.Find(patientID);
             ctrlAddEditPerson1.ModeTitle = "Update Patient";
-            ctrlAddEditPerson1._LoadPatientData(patientID);
+            ctrlAddEditPerson1._LoadPatientData(patientID);           
         }
 
         private void _AddNewPatientMode()
@@ -45,6 +45,8 @@ namespace Clinica.Patients
             _mode = enMode.Addnew;
             _patient = new clsPatient();
             ctrlAddEditPerson1.IsSpecializationVisible = false;
+            ctrlAddEditPerson1.SetPersonType<clsPatient>();
+            ctrlAddEditPerson1.LoadPersonData<clsPatient>(2);
         }
 
     }

@@ -19,3 +19,5 @@ E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.People.ManagePeople.resources
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Patients.frmManagePatients.resources
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Doctors.frmManageDoctors.resources
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Doctors.frmAddUpdateDoctor.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Users.frmAddUpdateUser.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Users.frmManageUsers.resources

@@ -108,6 +108,7 @@
             this.btnUsers.TabIndex = 1;
             this.btnUsers.Text = "Users";
             this.btnUsers.UseVisualStyleBackColor = true;
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // Form1
             // 

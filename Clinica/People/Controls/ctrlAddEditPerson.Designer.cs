@@ -58,12 +58,24 @@
             this.txtSpecialization = new System.Windows.Forms.TextBox();
             this.gbSpecialization = new System.Windows.Forms.GroupBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.gbIsActive = new System.Windows.Forms.GroupBox();
+            this.rbInActive = new System.Windows.Forms.RadioButton();
+            this.rbActive = new System.Windows.Forms.RadioButton();
+            this.lblConfirmPassword = new System.Windows.Forms.Label();
+            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
+            this.userPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.gbSpecialization.SuspendLayout();
+            this.gbIsActive.SuspendLayout();
+            this.userPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -208,9 +220,10 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(462, 331);
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Location = new System.Drawing.Point(462, 392);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(189, 194);
+            this.pictureBox2.Size = new System.Drawing.Size(189, 133);
             this.pictureBox2.TabIndex = 18;
             this.pictureBox2.TabStop = false;
             // 
@@ -258,7 +271,7 @@
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.rbMale);
             this.groupBox1.Controls.Add(this.rbFemale);
-            this.groupBox1.Location = new System.Drawing.Point(229, 331);
+            this.groupBox1.Location = new System.Drawing.Point(462, 330);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(189, 56);
             this.groupBox1.TabIndex = 24;
@@ -323,7 +336,7 @@
             // 
             // txtSpecialization
             // 
-            this.txtSpecialization.Location = new System.Drawing.Point(6, 30);
+            this.txtSpecialization.Location = new System.Drawing.Point(22, 21);
             this.txtSpecialization.Multiline = true;
             this.txtSpecialization.Name = "txtSpecialization";
             this.txtSpecialization.Size = new System.Drawing.Size(189, 27);
@@ -332,9 +345,9 @@
             // gbSpecialization
             // 
             this.gbSpecialization.Controls.Add(this.txtSpecialization);
-            this.gbSpecialization.Location = new System.Drawing.Point(226, 408);
+            this.gbSpecialization.Location = new System.Drawing.Point(208, 325);
             this.gbSpecialization.Name = "gbSpecialization";
-            this.gbSpecialization.Size = new System.Drawing.Size(200, 69);
+            this.gbSpecialization.Size = new System.Drawing.Size(208, 69);
             this.gbSpecialization.TabIndex = 28;
             this.gbSpecialization.TabStop = false;
             this.gbSpecialization.Text = "Specialization";
@@ -352,10 +365,110 @@
             this.lblID.Text = "[???]";
             this.lblID.Visible = false;
             // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(13, 65);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(53, 13);
+            this.lblPassword.TabIndex = 34;
+            this.lblPassword.Text = "Password";
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(13, 12);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblUsername.TabIndex = 33;
+            this.lblUsername.Text = "Username";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(13, 81);
+            this.txtPassword.Multiline = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(189, 27);
+            this.txtPassword.TabIndex = 32;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(13, 28);
+            this.txtUsername.Multiline = true;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(189, 27);
+            this.txtUsername.TabIndex = 31;
+            // 
+            // gbIsActive
+            // 
+            this.gbIsActive.Controls.Add(this.rbInActive);
+            this.gbIsActive.Controls.Add(this.rbActive);
+            this.gbIsActive.Location = new System.Drawing.Point(331, 510);
+            this.gbIsActive.Name = "gbIsActive";
+            this.gbIsActive.Size = new System.Drawing.Size(125, 45);
+            this.gbIsActive.TabIndex = 35;
+            this.gbIsActive.TabStop = false;
+            this.gbIsActive.Text = "Is Active";
+            // 
+            // rbInActive
+            // 
+            this.rbInActive.AutoSize = true;
+            this.rbInActive.Location = new System.Drawing.Point(71, 19);
+            this.rbInActive.Name = "rbInActive";
+            this.rbInActive.Size = new System.Drawing.Size(39, 17);
+            this.rbInActive.TabIndex = 22;
+            this.rbInActive.TabStop = true;
+            this.rbInActive.Text = "No";
+            this.rbInActive.UseVisualStyleBackColor = true;
+            // 
+            // rbActive
+            // 
+            this.rbActive.AutoSize = true;
+            this.rbActive.Location = new System.Drawing.Point(6, 19);
+            this.rbActive.Name = "rbActive";
+            this.rbActive.Size = new System.Drawing.Size(43, 17);
+            this.rbActive.TabIndex = 21;
+            this.rbActive.TabStop = true;
+            this.rbActive.Text = "Yes";
+            this.rbActive.UseVisualStyleBackColor = true;
+            // 
+            // lblConfirmPassword
+            // 
+            this.lblConfirmPassword.AutoSize = true;
+            this.lblConfirmPassword.Location = new System.Drawing.Point(13, 121);
+            this.lblConfirmPassword.Name = "lblConfirmPassword";
+            this.lblConfirmPassword.Size = new System.Drawing.Size(91, 13);
+            this.lblConfirmPassword.TabIndex = 37;
+            this.lblConfirmPassword.Text = "Confirm Password";
+            // 
+            // txtConfirmPassword
+            // 
+            this.txtConfirmPassword.Location = new System.Drawing.Point(13, 137);
+            this.txtConfirmPassword.Multiline = true;
+            this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.Size = new System.Drawing.Size(189, 27);
+            this.txtConfirmPassword.TabIndex = 36;
+            // 
+            // userPanel
+            // 
+            this.userPanel.Controls.Add(this.lblUsername);
+            this.userPanel.Controls.Add(this.lblConfirmPassword);
+            this.userPanel.Controls.Add(this.txtUsername);
+            this.userPanel.Controls.Add(this.txtConfirmPassword);
+            this.userPanel.Controls.Add(this.txtPassword);
+            this.userPanel.Controls.Add(this.lblPassword);
+            this.userPanel.Location = new System.Drawing.Point(208, 313);
+            this.userPanel.Name = "userPanel";
+            this.userPanel.Size = new System.Drawing.Size(220, 169);
+            this.userPanel.TabIndex = 38;
+            this.userPanel.Visible = false;
+            // 
             // ctrlAddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.userPanel);
+            this.Controls.Add(this.gbIsActive);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.gbSpecialization);
             this.Controls.Add(this.btnAddPicture);
@@ -391,6 +504,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.gbSpecialization.ResumeLayout(false);
             this.gbSpecialization.PerformLayout();
+            this.gbIsActive.ResumeLayout(false);
+            this.gbIsActive.PerformLayout();
+            this.userPanel.ResumeLayout(false);
+            this.userPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,5 +545,15 @@
         private System.Windows.Forms.TextBox txtSpecialization;
         private System.Windows.Forms.GroupBox gbSpecialization;
         private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.GroupBox gbIsActive;
+        private System.Windows.Forms.RadioButton rbInActive;
+        private System.Windows.Forms.RadioButton rbActive;
+        private System.Windows.Forms.Label lblConfirmPassword;
+        private System.Windows.Forms.TextBox txtConfirmPassword;
+        private System.Windows.Forms.Panel userPanel;
     }
 }

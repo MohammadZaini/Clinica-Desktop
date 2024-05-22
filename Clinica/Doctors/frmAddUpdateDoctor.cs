@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinica_Business;
+using ClinicaBusiness;
 using static Clinica.People.ctrlAddEditPerson;
 
 namespace Clinica.Doctors
@@ -18,6 +19,7 @@ namespace Clinica.Doctors
         public frmAddUpdateDoctor()
         {
             InitializeComponent();
+
             _AddNewDoctorMode();
         }
 
@@ -31,14 +33,13 @@ namespace Clinica.Doctors
         private void _UpdateDoctorMode(int doctorID)
         {
             ctrlAddEditPerson1.ModeTitle = "Update Doctor";
-            ctrlAddEditPerson1._LoadDoctorData(doctorID);
-            ctrlAddEditPerson1.personType = clsPerson.PersonType.Doctor;
+            ctrlAddEditPerson1.LoadPersonData<clsDoctor>(doctorID);
         }
         private void _AddNewDoctorMode() { 
         
             ctrlAddEditPerson1.IsSpecializationVisible = true;
             ctrlAddEditPerson1.ModeTitle = "Doctor";
-            ctrlAddEditPerson1.personType = clsPerson.PersonType.Doctor;
+            ctrlAddEditPerson1.SetPersonType<clsDoctor>();
         }
     }
 }

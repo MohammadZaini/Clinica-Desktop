@@ -9,18 +9,16 @@ using System.Threading.Tasks;
 
 namespace ClinicaBusiness
 {
-    public class clsUser
+    public class clsUser: clsPerson
     {
 
-        enum Mode { AddNew = 0, Update = 1 };
+        new enum Mode { AddNew = 0, Update = 1 };
         private Mode _mode = Mode.AddNew;
 
         public int ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
-        public int PersonID { get; set; }
-        public clsPerson clsPerson { get; set; }
 
         public clsUser() { 
             ID = -1;
@@ -28,23 +26,22 @@ namespace ClinicaBusiness
             Password = string.Empty;
             IsActive = false;
             PersonID = -1;
-            clsPerson = null;
 
             _mode = Mode.AddNew;
         }
 
-        private clsUser(int userID, int PersonID, string username, string password, bool isActive) { 
+        private clsUser(int userID, int personID, string firstName, string secondName, string thirdName,
+            string lastName, DateTime dateOfBirth, byte gender, string phone, string email, string address,
+             string username, string password, bool isActive)
+            : base(personID, firstName, secondName, thirdName, lastName, dateOfBirth, gender, phone,
+                  email, address) { 
         
             ID = userID;
             Username= username;
             Password= password;
             IsActive = isActive;
-            this.PersonID = PersonID;
-
-            clsPerson = clsPerson.Find(PersonID);
 
             _mode = Mode.Update;
-
         }
 
         public static DataTable GetAllUsers() { 
@@ -52,21 +49,33 @@ namespace ClinicaBusiness
             return UserData.GetAllUsers();
         }
 
-        public static clsUser Find(int userID) {
+        public new static clsUser Find(int userID) {
 
-            int clsPersonID = -1;
+            int personID = -1;
             string username = "", passowrd = "";
             bool isActive = false;
 
-            if (UserData.GetUserInfoByID(userID, ref clsPersonID, ref username, ref passowrd, ref isActive))
-                return new clsUser(userID, clsPersonID, username, passowrd, isActive);
+            if (UserData.GetUserInfoByID(userID, ref personID, ref username, ref passowrd, ref isActive))
+            {
+                clsPerson person = clsPerson.Find(personID);
+
+                if (person == null) return null;
+ 
+                return new clsUser(userID, personID, person.FirstName, person.SecondName, person.ThirdName,
+                       person.LastName, person.DateOfBirth, person.Gender, person.Phone, person.Email, person.Address, username, passowrd, isActive);
+            }
+               
             else
                 return null;
         }
 
         private bool _AddNewUser() {
 
-            ID = UserData.AddNewUser(PersonID, Username, Password, IsActive);
+            int personID = 0;
+            ID = UserData.AddNewUser(ref personID, FirstName, SecondName, ThirdName, LastName,
+                DateOfBirth, Gender, Phone, Email, Address, Username, Password, IsActive);
+
+            PersonID = personID;
 
             return ID != -1; // other than -1 means that the user has been inserted successfully
 
@@ -77,7 +86,7 @@ namespace ClinicaBusiness
             return false;
         }
 
-        public bool Save() {
+        public new bool Save() {
 
             switch (_mode)
             {

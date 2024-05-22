@@ -1,6 +1,7 @@
 ﻿using Clinica.Doctors;
 using Clinica.Patients;
 using Clinica.People;
+using Clinica.Users;
 using ClinicaBusiness;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,12 @@ namespace Clinica
         {
             frmManageDoctors manageDoctors = new frmManageDoctors();    
             manageDoctors.Show();
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            frmManageUsers manageUsers = new frmManageUsers();
+            manageUsers.ShowDialog();
         }
     }
 }

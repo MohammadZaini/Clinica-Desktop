@@ -87,7 +87,9 @@ namespace Clinica_DataAccess
             }
         }
 
-        public static int AddNewUser(int clsPersonID, string username, string password,
+        public static int AddNewUser(ref int personID, string firstName, string secondName, string thirdName,
+             string lastName, DateTime dateOfBirth, byte gender, string phoneNumber,
+             string email, string address, string username, string password,
             bool isActive)
         {
 
@@ -99,15 +101,33 @@ namespace Clinica_DataAccess
 
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@clsPersonID", clsPersonID);
+
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@SecondName", secondName);
+                    command.Parameters.AddWithValue("@ThirdName", thirdName);
+                    command.Parameters.AddWithValue("@LastName", lastName);
+                    command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+                    command.Parameters.AddWithValue("@Gender", gender);
+                    command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Address", address);
+
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
                     command.Parameters.AddWithValue("@isActive", isActive);
 
 
-                    SqlParameter outputParameter = new SqlParameter("@UserID", SqlDbType.Int);
-                    outputParameter.Direction = ParameterDirection.Output;
-                    command.Parameters.Add(outputParameter);
+                    SqlParameter personIDOutputParam = new SqlParameter("@PersonID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(personIDOutputParam);
+
+                    SqlParameter userIDOutputParam = new SqlParameter("@UserID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(userIDOutputParam);
 
                     try
                     {
@@ -115,7 +135,8 @@ namespace Clinica_DataAccess
 
                         command.ExecuteNonQuery();
 
-                        userID = (int)outputParameter.Value;
+                        personID = (int)personIDOutputParam.Value;
+                        userID = (int)userIDOutputParam.Value;
                     }
                     catch (Exception ex)
                     {
