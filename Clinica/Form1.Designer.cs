@@ -35,6 +35,7 @@
             this.btnAppointments = new System.Windows.Forms.Button();
             this.btnDoctors = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
+            this.lblWelcomeUser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,10 +45,10 @@
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.AllowUserToOrderColumns = true;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsers.Location = new System.Drawing.Point(12, 550);
+            this.dgvUsers.Location = new System.Drawing.Point(12, 716);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
-            this.dgvUsers.Size = new System.Drawing.Size(1013, 270);
+            this.dgvUsers.Size = new System.Drawing.Size(1013, 104);
             this.dgvUsers.TabIndex = 0;
             // 
             // btnPeople
@@ -55,7 +56,7 @@
             this.btnPeople.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnPeople.Font = new System.Drawing.Font("Times New Roman", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPeople.Image = ((System.Drawing.Image)(resources.GetObject("btnPeople.Image")));
-            this.btnPeople.Location = new System.Drawing.Point(12, 12);
+            this.btnPeople.Location = new System.Drawing.Point(12, 153);
             this.btnPeople.Name = "btnPeople";
             this.btnPeople.Size = new System.Drawing.Size(270, 234);
             this.btnPeople.TabIndex = 1;
@@ -67,7 +68,7 @@
             // 
             this.btnPatients.Font = new System.Drawing.Font("Times New Roman", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPatients.Image = ((System.Drawing.Image)(resources.GetObject("btnPatients.Image")));
-            this.btnPatients.Location = new System.Drawing.Point(309, 12);
+            this.btnPatients.Location = new System.Drawing.Point(309, 153);
             this.btnPatients.Name = "btnPatients";
             this.btnPatients.Size = new System.Drawing.Size(270, 234);
             this.btnPatients.TabIndex = 1;
@@ -79,7 +80,7 @@
             // 
             this.btnAppointments.Font = new System.Drawing.Font("Times New Roman", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAppointments.Image = ((System.Drawing.Image)(resources.GetObject("btnAppointments.Image")));
-            this.btnAppointments.Location = new System.Drawing.Point(12, 264);
+            this.btnAppointments.Location = new System.Drawing.Point(12, 405);
             this.btnAppointments.Name = "btnAppointments";
             this.btnAppointments.Size = new System.Drawing.Size(270, 234);
             this.btnAppointments.TabIndex = 1;
@@ -90,7 +91,7 @@
             // 
             this.btnDoctors.Font = new System.Drawing.Font("Times New Roman", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDoctors.Image = ((System.Drawing.Image)(resources.GetObject("btnDoctors.Image")));
-            this.btnDoctors.Location = new System.Drawing.Point(630, 12);
+            this.btnDoctors.Location = new System.Drawing.Point(630, 153);
             this.btnDoctors.Name = "btnDoctors";
             this.btnDoctors.Size = new System.Drawing.Size(270, 234);
             this.btnDoctors.TabIndex = 1;
@@ -102,7 +103,7 @@
             // 
             this.btnUsers.Font = new System.Drawing.Font("Times New Roman", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsers.Image = ((System.Drawing.Image)(resources.GetObject("btnUsers.Image")));
-            this.btnUsers.Location = new System.Drawing.Point(309, 264);
+            this.btnUsers.Location = new System.Drawing.Point(309, 405);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(270, 234);
             this.btnUsers.TabIndex = 1;
@@ -110,11 +111,22 @@
             this.btnUsers.UseVisualStyleBackColor = true;
             this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
+            // lblWelcomeUser
+            // 
+            this.lblWelcomeUser.AutoSize = true;
+            this.lblWelcomeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcomeUser.Location = new System.Drawing.Point(29, 27);
+            this.lblWelcomeUser.Name = "lblWelcomeUser";
+            this.lblWelcomeUser.Size = new System.Drawing.Size(108, 25);
+            this.lblWelcomeUser.TabIndex = 2;
+            this.lblWelcomeUser.Text = "Welcome";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1037, 832);
+            this.Controls.Add(this.lblWelcomeUser);
             this.Controls.Add(this.btnDoctors);
             this.Controls.Add(this.btnUsers);
             this.Controls.Add(this.btnAppointments);
@@ -122,10 +134,12 @@
             this.Controls.Add(this.btnPeople);
             this.Controls.Add(this.dgvUsers);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,6 +151,7 @@
         private System.Windows.Forms.Button btnAppointments;
         private System.Windows.Forms.Button btnDoctors;
         private System.Windows.Forms.Button btnUsers;
+        private System.Windows.Forms.Label lblWelcomeUser;
     }
 }
 

@@ -409,6 +409,7 @@
             this.gbIsActive.TabIndex = 35;
             this.gbIsActive.TabStop = false;
             this.gbIsActive.Text = "Is Active";
+            this.gbIsActive.Visible = false;
             // 
             // rbInActive
             // 

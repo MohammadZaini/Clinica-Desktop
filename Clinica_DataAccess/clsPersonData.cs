@@ -17,7 +17,7 @@ namespace Clinica_DataAccess
             
             int clsPersonID = -1;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 string query = @"Insert Into People 
                                  Values ( @firstName, @secondName, @thirdName, @lastName, @dateOfBirth,
@@ -49,7 +49,7 @@ namespace Clinica_DataAccess
                 catch (Exception ex)
                 {
 
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -64,7 +64,7 @@ namespace Clinica_DataAccess
 
             bool isUpdated = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 string query = @"Update People 
                                  Set FirstName = @firstName,
@@ -98,7 +98,7 @@ namespace Clinica_DataAccess
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -112,7 +112,7 @@ namespace Clinica_DataAccess
 
             bool isFound = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 string query = @"Select * From People                              
                                  Where PersonID = @PersonID";
@@ -145,7 +145,7 @@ namespace Clinica_DataAccess
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -153,12 +153,11 @@ namespace Clinica_DataAccess
             return isFound;
         }
 
-
         public static bool DeletePerson(int personID) {
 
             bool isDeleted = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 try
                 {
@@ -179,13 +178,13 @@ namespace Clinica_DataAccess
                         }
                         catch (Exception ex)
                         {
-                            DataAccessSettings.LogEvent(ex.Message);
+                            clsDataAccessSettings.LogEvent(ex.Message);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }

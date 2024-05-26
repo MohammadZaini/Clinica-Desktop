@@ -21,6 +21,7 @@ namespace Clinica.Users
         private void frmAddUpdateUser_Load(object sender, EventArgs e)
         {
             ctrlAddEditPerson1.SetPersonType<clsUser>();
+            ctrlAddEditPerson1.ModeTitle = "User";
         }
     }
 }

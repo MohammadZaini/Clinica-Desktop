@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvDoctors = new System.Windows.Forms.DataGridView();
-            this.btnAddDoctor = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.doctorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteDoctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddDoctor = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoctors)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvDoctors
@@ -54,6 +54,28 @@
             this.dgvDoctors.Size = new System.Drawing.Size(654, 416);
             this.dgvDoctors.TabIndex = 0;
             this.dgvDoctors.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvDoctors_RowPrePaint);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.doctorDetailsToolStripMenuItem,
+            this.deleteDoctorToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 48);
+            // 
+            // doctorDetailsToolStripMenuItem
+            // 
+            this.doctorDetailsToolStripMenuItem.Name = "doctorDetailsToolStripMenuItem";
+            this.doctorDetailsToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.doctorDetailsToolStripMenuItem.Text = "Doctor Details";
+            this.doctorDetailsToolStripMenuItem.Click += new System.EventHandler(this.doctorDetailsToolStripMenuItem_Click);
+            // 
+            // deleteDoctorToolStripMenuItem
+            // 
+            this.deleteDoctorToolStripMenuItem.Name = "deleteDoctorToolStripMenuItem";
+            this.deleteDoctorToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.deleteDoctorToolStripMenuItem.Text = "Delete Doctor";
+            this.deleteDoctorToolStripMenuItem.Click += new System.EventHandler(this.deleteDoctorToolStripMenuItem_Click);
             // 
             // btnAddDoctor
             // 
@@ -74,28 +96,6 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.doctorDetailsToolStripMenuItem,
-            this.deleteDoctorToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 48);
-            // 
-            // doctorDetailsToolStripMenuItem
-            // 
-            this.doctorDetailsToolStripMenuItem.Name = "doctorDetailsToolStripMenuItem";
-            this.doctorDetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.doctorDetailsToolStripMenuItem.Text = "Doctor Details";
-            this.doctorDetailsToolStripMenuItem.Click += new System.EventHandler(this.doctorDetailsToolStripMenuItem_Click);
-            // 
-            // deleteDoctorToolStripMenuItem
-            // 
-            this.deleteDoctorToolStripMenuItem.Name = "deleteDoctorToolStripMenuItem";
-            this.deleteDoctorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteDoctorToolStripMenuItem.Text = "Delete Doctor";
-            this.deleteDoctorToolStripMenuItem.Click += new System.EventHandler(this.deleteDoctorToolStripMenuItem_Click);
-            // 
             // frmManageDoctors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,11 +106,12 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmManageDoctors";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmManageDoctors";
             this.Load += new System.EventHandler(this.frmManageDoctors_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoctors)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

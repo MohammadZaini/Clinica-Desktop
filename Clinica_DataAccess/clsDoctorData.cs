@@ -15,7 +15,7 @@ namespace Clinica_DataAccess
         {
 
             DataTable doctorsDT = new DataTable();
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 try
                 {
@@ -34,13 +34,13 @@ namespace Clinica_DataAccess
                         }
                         catch (Exception ex)
                         {
-                            DataAccessSettings.LogEvent(ex.Message);
+                            clsDataAccessSettings.LogEvent(ex.Message);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -52,7 +52,7 @@ namespace Clinica_DataAccess
             
             bool isFound = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
 
                 using (SqlCommand command = new SqlCommand("sp_GetDoctorInfoByID", connection))
@@ -76,7 +76,7 @@ namespace Clinica_DataAccess
                     }
                     catch (Exception ex)
                     {
-                        DataAccessSettings.LogEvent(ex.Message);
+                        clsDataAccessSettings.LogEvent(ex.Message);
                     }
                 }
 
@@ -92,7 +92,7 @@ namespace Clinica_DataAccess
 
             int doctorID = -1;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
 
                 using (SqlCommand command = new SqlCommand("sp_AddNewDoctor", connection))
@@ -134,7 +134,7 @@ namespace Clinica_DataAccess
                     }
                     catch (Exception ex)
                     {
-                        DataAccessSettings.LogEvent(ex.Message);
+                        clsDataAccessSettings.LogEvent(ex.Message);
                     }
                 }
             }
@@ -147,7 +147,7 @@ namespace Clinica_DataAccess
         {
             bool isDeleted = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 try
                 {
@@ -168,13 +168,13 @@ namespace Clinica_DataAccess
                         }
                         catch (Exception ex)
                         {
-                            DataAccessSettings.LogEvent(ex.Message);
+                            clsDataAccessSettings.LogEvent(ex.Message);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
             }
 

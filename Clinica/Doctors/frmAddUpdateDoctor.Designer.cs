@@ -47,6 +47,7 @@
             this.Controls.Add(this.ctrlAddEditPerson1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddUpdateDoctor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddUpdateDoctor";
             this.ResumeLayout(false);
 

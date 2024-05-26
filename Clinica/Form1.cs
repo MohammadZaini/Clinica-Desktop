@@ -31,6 +31,8 @@ namespace Clinica
             else
                 dgvUsers.DataSource = dt;
 
+            lblWelcomeUser.Text = "Welcome, " + clsGlobalSettings.LoggedInUser.FirstName + " " + clsGlobalSettings.LoggedInUser.LastName;
+
         }
 
         private void btnPeople_Click(object sender, EventArgs e)

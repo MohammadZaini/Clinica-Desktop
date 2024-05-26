@@ -12,7 +12,7 @@ namespace Clinica_Business
 {
     public class clsPatient : clsPerson
     {
-        private enum Mode { AddNew = 0, Update = 1 }
+        private new enum Mode { AddNew = 0, Update = 1 }
         private Mode _mode = Mode.AddNew;
         public int PatientID { get; set; }
 

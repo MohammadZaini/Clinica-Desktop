@@ -60,17 +60,17 @@ namespace Clinica_Business
             mode = Mode.Update;
         }
 
-        public static clsPerson Find(int clsPersonID) {
+        public static clsPerson Find(int personID) {
             string firstName = "", secondName = "", thirdName = "", lastName = "", phone = "",
                 email = "", address = "";
             DateTime dateOfBirth = DateTime.Now;
             byte gender = 0;
 
 
-            if (clsPersonData.FindPersonInfoByID(clsPersonID, ref firstName, ref secondName, ref thirdName, ref lastName,
+            if (clsPersonData.FindPersonInfoByID(personID, ref firstName, ref secondName, ref thirdName, ref lastName,
                ref dateOfBirth, ref gender, ref phone, ref email, ref address))
 
-                return new clsPerson(clsPersonID, firstName, secondName, thirdName, lastName,
+                return new clsPerson(personID, firstName, secondName, thirdName, lastName,
                  dateOfBirth, gender, phone, email, address);
             else
                 return null;

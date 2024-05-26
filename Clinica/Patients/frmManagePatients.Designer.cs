@@ -33,9 +33,9 @@
             this.dgvPatients = new System.Windows.Forms.DataGridView();
             this.cmsPatientMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.patientDetialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddPatient = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.deletePatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatients)).BeginInit();
             this.cmsPatientMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -68,9 +68,16 @@
             // patientDetialsToolStripMenuItem
             // 
             this.patientDetialsToolStripMenuItem.Name = "patientDetialsToolStripMenuItem";
-            this.patientDetialsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.patientDetialsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.patientDetialsToolStripMenuItem.Text = "Patient Details";
             this.patientDetialsToolStripMenuItem.Click += new System.EventHandler(this.patientDetialsToolStripMenuItem_Click);
+            // 
+            // deletePatientToolStripMenuItem
+            // 
+            this.deletePatientToolStripMenuItem.Name = "deletePatientToolStripMenuItem";
+            this.deletePatientToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.deletePatientToolStripMenuItem.Text = "Delete Patient";
+            this.deletePatientToolStripMenuItem.Click += new System.EventHandler(this.deletePatientToolStripMenuItem_Click);
             // 
             // btnAddPatient
             // 
@@ -94,13 +101,6 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // deletePatientToolStripMenuItem
-            // 
-            this.deletePatientToolStripMenuItem.Name = "deletePatientToolStripMenuItem";
-            this.deletePatientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deletePatientToolStripMenuItem.Text = "Delete Patient";
-            this.deletePatientToolStripMenuItem.Click += new System.EventHandler(this.deletePatientToolStripMenuItem_Click);
-            // 
             // frmManagePatients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -111,6 +111,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmManagePatients";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmManagePatients";
             this.Load += new System.EventHandler(this.frmManagePatients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatients)).EndInit();

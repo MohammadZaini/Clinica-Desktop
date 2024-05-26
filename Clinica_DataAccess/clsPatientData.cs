@@ -15,7 +15,7 @@ namespace Clinica_DataAccess
         public static DataTable GetAllPatients() { 
         
             DataTable patientsDT = new DataTable();
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {          
                 try
                 {
@@ -34,13 +34,13 @@ namespace Clinica_DataAccess
                         }
                         catch (Exception ex)
                         {
-                            DataAccessSettings.LogEvent(ex.Message);
+                            clsDataAccessSettings.LogEvent(ex.Message);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -53,7 +53,7 @@ namespace Clinica_DataAccess
 
             bool isFound = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 string query = @"Select * From Patients                              
                                  Where PatientID = @PatientID";
@@ -78,7 +78,7 @@ namespace Clinica_DataAccess
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }
@@ -93,7 +93,7 @@ namespace Clinica_DataAccess
 
             int patientID = -1;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
 
                 using (SqlCommand command = new SqlCommand("sp_AddNewPatient", connection))
@@ -134,7 +134,7 @@ namespace Clinica_DataAccess
                     }
                     catch (Exception ex)
                     {
-                        DataAccessSettings.LogEvent(ex.Message);
+                        clsDataAccessSettings.LogEvent(ex.Message);
                     }
                 }
             }
@@ -149,7 +149,7 @@ namespace Clinica_DataAccess
 
             bool isDeleted = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
             {
                 try
                 {
@@ -170,13 +170,13 @@ namespace Clinica_DataAccess
                         }
                         catch (Exception ex)
                         {
-                            DataAccessSettings.LogEvent(ex.Message);
+                            clsDataAccessSettings.LogEvent(ex.Message);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    DataAccessSettings.LogEvent(ex.Message);
+                    clsDataAccessSettings.LogEvent(ex.Message);
                 }
 
             }

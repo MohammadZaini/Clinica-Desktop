@@ -11,7 +11,7 @@ namespace ClinicaBusiness
 {
     public class clsDoctor : clsPerson
     {
-        enum Mode { AddNew = 0, Update = 1 }
+        private new enum Mode { AddNew = 0, Update = 1 }
 
         private Mode _mode = Mode.AddNew;
 
@@ -91,7 +91,6 @@ namespace ClinicaBusiness
 
             return clsDoctorData.GetAllDoctors();
         }
-
 
         public new bool Delete() {
 

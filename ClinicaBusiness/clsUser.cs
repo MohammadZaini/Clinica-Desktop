@@ -46,7 +46,7 @@ namespace ClinicaBusiness
 
         public static DataTable GetAllUsers() { 
         
-            return UserData.GetAllUsers();
+            return clsUserData.GetAllUsers();
         }
 
         public new static clsUser Find(int userID) {
@@ -55,7 +55,7 @@ namespace ClinicaBusiness
             string username = "", passowrd = "";
             bool isActive = false;
 
-            if (UserData.GetUserInfoByID(userID, ref personID, ref username, ref passowrd, ref isActive))
+            if (clsUserData.GetUserInfoByID(userID, ref personID, ref username, ref passowrd, ref isActive))
             {
                 clsPerson person = clsPerson.Find(personID);
 
@@ -69,10 +69,31 @@ namespace ClinicaBusiness
                 return null;
         }
 
+        public static clsUser Find(string username)
+        {
+
+            int personID = -1, userID = -1;
+            string passowrd = "";
+            bool isActive = false;
+
+            if (clsUserData.GetUserInfoByUsername(username, ref userID, ref personID, ref passowrd, ref isActive))
+            {
+                clsPerson person = clsPerson.Find(personID);
+
+                if (person == null) return null;
+
+                return new clsUser(userID, personID, person.FirstName, person.SecondName, person.ThirdName,
+                       person.LastName, person.DateOfBirth, person.Gender, person.Phone, person.Email, person.Address, username, passowrd, isActive);
+            }
+
+            else
+                return null;
+        }
+
         private bool _AddNewUser() {
 
             int personID = 0;
-            ID = UserData.AddNewUser(ref personID, FirstName, SecondName, ThirdName, LastName,
+            ID = clsUserData.AddNewUser(ref personID, FirstName, SecondName, ThirdName, LastName,
                 DateOfBirth, Gender, Phone, Email, Address, Username, Password, IsActive);
 
             PersonID = personID;

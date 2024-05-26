@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Clinica_DataAccess
 {
-    public class UserData
+    public class clsUserData
     {
 
         public static DataTable GetAllUsers() { 
 
             DataTable usersDt = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString)) {
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString)) {
 
                 string spGetAllUsersName = "GetAllUsers";
 
@@ -35,7 +35,7 @@ namespace Clinica_DataAccess
                     }
                     catch (Exception ex)
                     {
-                        DataAccessSettings.LogEvent(ex.Message);
+                        clsDataAccessSettings.LogEvent(ex.Message);
                     }
            
                 }                   
@@ -44,12 +44,12 @@ namespace Clinica_DataAccess
             return usersDt;       
         }
 
-        public static bool GetUserInfoByID(int userID, ref int clsPersonID ,ref string username, ref string password,
+        public static bool GetUserInfoByID(int userID, ref int personID ,ref string username, ref string password,
             ref bool isActive) {
 
             bool isFound = false;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString)) {
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString)) {
 
                 using (SqlCommand command = new SqlCommand("GetUserInfoByID", connection)) {
 
@@ -69,7 +69,7 @@ namespace Clinica_DataAccess
 
                             isFound = true;
 
-                            clsPersonID = (int)reader["clsPersonID"];
+                            personID = (int)reader["PersonID"];
                             username = (string)reader["Username"];
                             password = (string)reader["Password"];
                             isActive = (bool)reader["IsActive"];
@@ -79,7 +79,54 @@ namespace Clinica_DataAccess
                     }
                     catch (Exception ex)
                     {
-                        DataAccessSettings.LogEvent(ex.Message);
+                        clsDataAccessSettings.LogEvent(ex.Message);
+                    }
+                }
+
+                return isFound;
+            }
+        }
+
+
+        public static bool GetUserInfoByUsername(string username, ref int userID, ref int personID, ref string password,
+            ref bool isActive)
+        {
+
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
+            {
+
+                using (SqlCommand command = new SqlCommand("GetUserInfoByUsername", connection))
+                {
+
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    try
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+
+                            isFound = true;
+
+                            personID = (int)reader["PersonID"];
+                            userID = (int)reader["UserID"];
+                            password = (string)reader["Password"];
+                            isActive = (bool)reader["IsActive"];
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        clsDataAccessSettings.LogEvent(ex.Message);
                     }
                 }
 
@@ -95,7 +142,7 @@ namespace Clinica_DataAccess
 
             int userID = -1;
 
-            using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString)) {
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString)) {
 
                 using (SqlCommand command = new SqlCommand("sp_AddNewUser", connection)) {
 
@@ -140,7 +187,7 @@ namespace Clinica_DataAccess
                     }
                     catch (Exception ex)
                     {
-                        DataAccessSettings.LogEvent(ex.Message);
+                        clsDataAccessSettings.LogEvent(ex.Message);
                     }          
                 }
             }
