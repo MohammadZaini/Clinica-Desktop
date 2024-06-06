@@ -40,5 +40,10 @@ namespace Clinica
         {
             return MessageBox.Show(warningMessage, warningCaption, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
         }
+
+        public static DialogResult ShowConfirmationMessage(string confirmationMessage, string confirmationCaption = "Confirmation")
+        {
+            return MessageBox.Show(confirmationMessage, confirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
     }
 }

@@ -100,6 +100,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(213, 29);
             this.txtPassword.TabIndex = 0;
+            this.txtPassword.Text = "555";
             // 
             // txtUsername
             // 
@@ -108,6 +109,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(213, 29);
             this.txtUsername.TabIndex = 0;
+            this.txtUsername.Text = "Moe2";
             // 
             // frmUserLogin
             // 

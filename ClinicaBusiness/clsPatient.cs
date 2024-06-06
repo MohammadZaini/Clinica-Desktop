@@ -54,6 +54,24 @@ namespace Clinica_Business
                 return null;
         }
 
+        public static clsPatient Find(string firstName, string lastName)
+        {
+            int personID = -1;
+            int patientID = -1;
+
+            if (clsPatientData.FindPatientInfoByFirstNameAndLastName(firstName, lastName ,ref personID, ref patientID))
+            {
+                clsPerson person = clsPerson.Find(personID);
+
+                if (person == null) return null;
+
+                return new clsPatient(patientID, personID, person.FirstName, person.SecondName, person.ThirdName,
+                    person.LastName, person.DateOfBirth, person.Gender, person.Phone, person.Email, person.Address);
+            }
+            else
+                return null;
+        }
+
         private bool _AddNewPatient()
         {
             int personID = 0;

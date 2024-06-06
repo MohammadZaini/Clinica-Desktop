@@ -1,4 +1,5 @@
-﻿using Clinica.Doctors;
+﻿using Clinica.Appointments;
+using Clinica.Doctors;
 using Clinica.Patients;
 using Clinica.People;
 using Clinica.Users;
@@ -57,6 +58,12 @@ namespace Clinica
         {
             frmManageUsers manageUsers = new frmManageUsers();
             manageUsers.ShowDialog();
+        }
+
+        private void btnAppointments_Click(object sender, EventArgs e)
+        {
+            frmManageAppointments manageAppointments = new frmManageAppointments();
+            manageAppointments.ShowDialog();
         }
     }
 }

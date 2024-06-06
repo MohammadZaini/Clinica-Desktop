@@ -22,3 +22,8 @@ E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Doctors.frmAddUpdateDoctor.resou
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Users.frmAddUpdateUser.resources
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Users.frmManageUsers.resources
 E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Login.frmUserLogin.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Appointments.frmManageAppointments.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Appointments.frmScheduleAppointment.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Patients.ctrlPatientCardWithFilter.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.People.Controls.ctrlPersonCard.resources
+E:\C# Level 2\Clinica\Clinica\obj\Debug\Clinica.Doctors.Controls.ctrlDoctorCard.resources

@@ -142,7 +142,6 @@ namespace Clinica_DataAccess
             return doctorID;
         }
 
-
         public static bool DeleteDoctor(int personID)
         {
             bool isDeleted = false;

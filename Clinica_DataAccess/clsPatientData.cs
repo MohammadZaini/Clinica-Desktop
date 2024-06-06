@@ -86,6 +86,45 @@ namespace Clinica_DataAccess
             return isFound;
         }
 
+        public static bool FindPatientInfoByFirstNameAndLastName(string firstName, string lastName, ref int personID, ref int patientID)
+        {
+
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
+            {
+
+                using (SqlCommand command = new SqlCommand("sp_GetPatientInfoByFirstNameAndLastName", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@LastName", lastName);
+
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            isFound = true;
+
+                            personID = (int)reader["PersonID"];
+                            patientID = (int)reader["PatientID"];
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        clsDataAccessSettings.LogEvent(ex.Message);
+                    }
+                }
+
+            }
+
+            return isFound;
+        }
+
         public static int AddNewPatient(ref int personID, string firstName, string secondName, string thirdName,
              string lastName, DateTime dateOfBirth, byte gender, string phoneNumber,
              string email, string address)
@@ -141,8 +180,6 @@ namespace Clinica_DataAccess
 
             return patientID;
         }
-
-
 
         public static bool DeletePatient(int personID)
         {
